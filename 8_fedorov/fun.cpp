@@ -288,15 +288,15 @@ void show(const std::map<int, Uzond>& program) {
 
 	std::cout << std::endl << std::endl;
 }
-
-void find(vector<Uzond>& program)
+void find(std::map<int, Uzond>& program)
 {
-	if (program.size() == 0)
+	if (program.empty())
 	{
 		error();
 		return;
 	}
-	char* keyword = new char[MAXLINE]; keyword[0] = '\0';
+	char keyword[MAXLINE];
+	keyword[0] = '\0';
 
 	COORD enter, hat;
 
@@ -310,24 +310,24 @@ void find(vector<Uzond>& program)
 
 	COORD temp_pos;
 	short len = 0;
-
-	//Вводим ключевое слово для поиска.
+	int i;
+	// Вводим ключевое слово для поиска.
+	do
 	{
-		int i = 0;
-		do
+		if (!stredit(keyword, MAXLINE, enter.X, enter.Y, len, false))
+			return;
+		len = static_cast<short>(strlen(keyword));
+
+		
+		for (i = 0; i < len; i++)
 		{
-			if (!stredit(keyword, MAXLINE, enter.X, enter.Y, len, false)) return;
-			len = (short)strlen(keyword);
+			if (!(isdigit_r(keyword[i]) || isalpha_r(keyword[i])))
+				break;
+		}
 
-			for (i = 0; i < len; i++)
-			{
-				if (!(isdigit_r(keyword[i]) || isalpha_r(keyword[i]))) break;
-			}
+	} while (i != len || len == 0);
 
-		} while (i != len || len == 0);
-	}
-
-	// Выводим результаты. 
+	// Выводим результаты.
 
 	system("cls");
 	cout << " Esc - Wejscie" << endl << endl;
@@ -336,18 +336,17 @@ void find(vector<Uzond>& program)
 
 	cout << endl << stru << endl;
 	hat = getCursorPosition();
-	//Выводим новые результаты поиска
+	// Выводим новые результаты поиска
 
-
-	for (short l = 0; l < program.size(); l++)
+	for (const auto& pair : program)
 	{
-		cout << "Rezultat o " << l + 1 << " linii" << endl;
-		for (short i = 0; i < program[0].get_people_size(); i++)
+		const Uzond& uand = pair.second;
+		cout << "Rezultat o "  << " linii" << endl;
+		for (short i = 0; i < uand.get_people_size(); i++)
 		{
-			program[l].get_user(i)->find(keyword);
+			uand.get_user(i)->find(keyword);
 		}
 		cout << endl;
 	}
 	system("pause");
-	delete[] keyword; keyword = nullptr;
 }

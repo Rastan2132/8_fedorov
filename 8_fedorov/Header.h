@@ -241,7 +241,7 @@ bool isdigit_r(unsigned char a);
 
 bool chek_file(string file);
 void dell(std::map<int, Uzond>& program);
-void find(vector<Uzond>& program);
+void find(std::map<int, Uzond>& program);
 void edit(std::map<int, Uzond>& program, int index_1, int index_2);
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork);
 void show(const std::map<int, Uzond>& program);

@@ -23,7 +23,6 @@ int main()
 		}
 
 
-
  }
 	else
 	{
@@ -97,7 +96,7 @@ int main()
 		}
 				  break;
 		case (121):
-		//	find(program);
+			find(program);
 			break;
 		}
 	} while (work);
