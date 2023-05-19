@@ -262,5 +262,5 @@ void DeleteCh(char* str, int& cursor, int& term);
 void InsertCh(char* str, int buffer_size, int& cursor, int& term, char symb);
 
 
-std::istream& operator>>(vector<Uzond>& program, std::istream& in);
-std::ostream& operator<<(std::ostream& out, const vector<Uzond>& program);
+std::istream& operator>>(std::istream& in, std::map<int, Uzond>& program);
+std::ostream& operator<<(std::ostream& out, const std::map<int, Uzond>& program);

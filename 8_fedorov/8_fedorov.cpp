@@ -13,8 +13,8 @@ int main()
 	vector<string> arrOfNameKindergarten = { "Krasnoludek", "Sloneczko", "Bajka", "Promyczek" };
 	vector<string> arrOfWork = { "nauczyciel", "lekarz", "informatyk", "sprzedawca", "prawnik" };
 
-	//if (chek_file("Uzonds.txt") == 0)
-	//{
+	if (chek_file("Uzonds.txt") == 0)
+	{
 		short size = rand() % 10 + 1;
 		short size_of_peopl = rand() % 10 + 1;
 		for (short i = 0; i < size; i++) {
@@ -24,14 +24,14 @@ int main()
 
 
 
-/* }
+ }
 	else
 	{
 		std::ifstream file("Uzonds.txt");
-		program >> file;
+		file >> program;
 		file.close();
 	}
-	*/
+	
 
 	if (program.size() < 0)
 	{
@@ -97,14 +97,14 @@ int main()
 		}
 				  break;
 		case (121):
-			//find(program);
+		//	find(program);
 			break;
 		}
 	} while (work);
-	//	std::ofstream  file("Uzonds.txt");
-//	file << program.size() << " " << program[0].get_people_size() << " ";
-//	file << program;
+		std::ofstream  file("Uzonds.txt");
+	file << program.size() << " " << program[0].get_people_size() << " ";
+	file << program;
 
-//	file.close();
+	file.close();
 
 }
