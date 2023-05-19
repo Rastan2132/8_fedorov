@@ -92,8 +92,8 @@ int main()
 			}
 
 			}
-			//	for (short l = 0; l < program.size(); l++)
-				//		program[l].sort(flag);
+				for (short l = 0; l < program.size(); l++)
+						program[l].sort(flag);
 		}
 				  break;
 		case (121):
