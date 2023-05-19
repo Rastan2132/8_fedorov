@@ -131,23 +131,23 @@ void edit(vector<Uzond>& program, short index_1, short index_2)
 	ShowCursor(0);
 }
 
-
-void dell(vector<Uzond>& program)
+void dell(std::map<int, Uzond>& program)
 {
-	cout << "Usunac uzytkownika lub uzytkownika? (u lub o)" << endl;
+	std::cout << "Usunac uzytkownika lub uzytkownika? (u lub o)" << std::endl;
+
 	switch (_getch()) {
 	case (117):
 	{
-		if (program.size() <= 0) {
+		if (program.empty()) {
 			error();
 		}
-		cout << "Wybierz numer Uzond, ktory chcesz usunac (1 - " << program.size() << "):" << endl;
+		std::cout << "Wybierz numer Uzond, ktory chcesz usunac (1 - " << program.size() << "):" << std::endl;
 		int num = 0;
-		cin >> num;
+		std::cin >> num;
 		if (num < 1 || num > program.size()) {
 			error();
 		}
-		program.erase(program.begin() + (num - 1));
+		program.erase(num - 1);
 
 		break;
 	}
@@ -155,15 +155,15 @@ void dell(vector<Uzond>& program)
 	case (111):
 	{
 
-		cout << "Wybierz numer uzytkownika, ktorego chcesz usunac(1 - " << program[0].get_people_size() << "):" << endl;
+		std::cout << "Wybierz numer uzytkownika, ktorego chcesz usunac(1 - " << program.begin()->second.get_people_size() << "):" << std::endl;
 		int num = 0;
-		cin >> num;
-		if (num < 1 || num >  program[0].get_people_size()) {
+		std::cin >> num;
+		if (num < 1 || num > program.begin()->second.get_people_size()) {
 			error();
 		}
 
-		for (int i = 0; i < program.size(); i++) {
-			program[i].removePerson(num);
+		for (auto& pair : program) {
+			pair.second.removePerson(num);
 		}
 
 		break;

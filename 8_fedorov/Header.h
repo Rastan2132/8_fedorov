@@ -240,7 +240,7 @@ bool isdigit_r(unsigned char a);
 
 
 bool chek_file(string file);
-void dell(vector<Uzond>& program);
+void dell(std::map<int, Uzond>& program);
 void find(vector<Uzond>& program);
 void edit(vector<Uzond>& program, short index_1, short index_2);
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork);
