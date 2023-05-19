@@ -77,43 +77,44 @@ string rand_data(int max)
 	}
 	return "error";
 }
-
-void add(vector<Uzond>& program, vector<string> arr_name, vector<string> arr_surname, vector<string> arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork)
+void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork)
 {
-	cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << endl;
+	std::cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << std::endl;
 
 	switch (_getch())
 	{
-	case (117): {
-
-		program.push_back(Uzond::create(program[0].get_people_size(), arr_of_name_urzant, arr_name, arr_surname, arrOfNameKindergarten, arrOfWork));
-
+	case (117):
+	{
+		int index = program.size();
+		program.insert(std::make_pair(index, Uzond::create(program[0].get_people_size(), arr_of_name_urzant, arr_name, arr_surname, arrOfNameKindergarten, arrOfWork)));
 		break;
 	}
-	case (111): {
-		cout << "Ty chces dodac People lub Children? (1 or 2)" << endl;
+	case (111):
+	{
+		std::cout << "Ty chces dodac People lub Children? (1 or 2)" << std::endl;
 		bool flag;
 		switch (_getch())
 		{
 		case ('1'):
-			flag = 0;
+			flag = false;
 			break;
 		case ('2'):
-			flag = 1;
+			flag = true;
 			break;
 		default:
-			flag = 0;
+			flag = false;
 			break;
 		}
 
-		for (int i = 0; i < program.size(); i++)
-			program[i].addPerson(arr_name, arr_surname, arrOfNameKindergarten, arrOfWork, flag);
+		for (auto& pair : program)
+			pair.second.addPerson(arr_name, arr_surname, arrOfNameKindergarten, arrOfWork, flag);
 		break;
 	}
 	default:
 		break;
 	}
 }
+
 void edit(vector<Uzond>& program, short index_1, short index_2)
 {
 	system("cls");

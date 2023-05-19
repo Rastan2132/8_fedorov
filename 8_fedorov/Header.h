@@ -243,7 +243,7 @@ bool chek_file(string file);
 void dell(vector<Uzond>& program);
 void find(vector<Uzond>& program);
 void edit(vector<Uzond>& program, short index_1, short index_2);
-void add(vector<Uzond>& program, vector<string> arr_name, vector<string> arr_surname, vector<string> arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
+void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork);
 void show(const std::map<int, Uzond>& program);
 COORD getCursorPosition(void);
 void Clear(int x, int y, long cnt = 100);

@@ -31,13 +31,13 @@ int main()
 		program >> file;
 		file.close();
 	}
-
+	*/
 
 	if (program.size() < 0)
 	{
 		error();
 	}
-	*/
+	
 	ShowCursor(0);
 	do
 	{
@@ -48,7 +48,7 @@ int main()
 			work = false;
 			break;
 		case (97):
-			//add(program, NAMES, SURNAMES, NAMES_of_Uzond, arrOfNameKindergarten, arrOfWork);
+			add(program, NAMES, SURNAMES, NAMES_of_Uzond, arrOfNameKindergarten, arrOfWork);
 			break;
 		case (100):
 			//dell(program);
