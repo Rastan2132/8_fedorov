@@ -114,22 +114,22 @@ void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name
 		break;
 	}
 }
-
-void edit(vector<Uzond>& program, short index_1, short index_2)
+void edit(std::map<int, Uzond>& program, int index_1, int index_2)
 {
 	system("cls");
 	ShowCursor(1);
-	if (index_1 < 0 || index_2 < 0)
+	if (index_1 < 0 || index_2 < 0 || program.find(index_1) == program.end() || program[index_1].get_user(index_2) == nullptr)
 	{
 		error();
 	}
 
-	cout << "Wstepne dane:" << endl;
+	std::cout << "Wstepne dane:" << std::endl;
 	program[index_1].get_user(index_2)->print();
-	cout << "Podaj Name Surname Year Pesel i sex: ";
+	std::cout << "Podaj Name Surname Year Pesel i sex: ";
 	program[index_1].get_user(index_2)->edit();
 	ShowCursor(0);
 }
+
 
 void dell(std::map<int, Uzond>& program)
 {
