@@ -48,77 +48,36 @@ void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, v
 
 void Uzond::sort(short flag)
 {
-
     switch (flag)
     {
     case 1:
-        for (short i = 0; i < people.size(); i++) {
-            for (short j = i + 1; j < people.size(); j++) {
-                if (people[i]->FullName->Name_property.compare(people[j]->FullName->Name_property) > 0) {
-                    swap(people[i]->FullName, people[j]->FullName);
-                    swap(people[i]->sex, people[j]->sex);
-                    swap(people[i]->piesel, people[j]->piesel);
-                    swap(people[i]->Year, people[j]->Year);
-                }
-            }
-        }
+        std::sort(people.begin(), people.end(), [](const auto& a, const auto& b) {
+            return a->FullName->Name_property < b->FullName->Name_property;
+            });
         break;
     case 2:
-        for (short i = 0; i < people.size(); i++) {
-            for (short j = i + 1; j < people.size(); j++) {
-                if (people[i]->FullName->Surname_property.compare(people[j]->FullName->Surname_property) > 0) {
-                    swap(people[i]->FullName, people[j]->FullName);
-                    swap(people[i]->sex, people[j]->sex);
-                    swap(people[i]->piesel, people[j]->piesel);
-                    swap(people[i]->Year, people[j]->Year);
-                }
-            }
-        }
-
+        std::sort(people.begin(), people.end(), [](const auto& a, const auto& b) {
+            return a->FullName->Surname_property < b->FullName->Surname_property;
+            });
         break;
     case 3:
-        for (short i = 0; i < people.size(); i++) {
-            for (short j = i + 1; j < people.size(); j++) {
-                if (people[i]->sex.compare(people[j]->sex) > 0) {
-                    swap(people[i]->FullName, people[j]->FullName);
-                    swap(people[i]->sex, people[j]->sex);
-                    swap(people[i]->piesel, people[j]->piesel);
-                    swap(people[i]->Year, people[j]->Year);
-                }
-            }
-        }
+        std::sort(people.begin(), people.end(), [](const auto& a, const auto& b) {
+            return a->sex < b->sex;
+            });
         break;
     case 4:
-        for (short i = 0; i < people.size(); i++)
-        {
-            for (short j = i + 1; j < people.size(); j++)
-            {
-                if (people[i]->piesel.compare(people[j]->piesel) > 0)
-                {
-                    swap(people[i]->FullName, people[j]->FullName);
-                    swap(people[i]->sex, people[j]->sex);
-                    swap(people[i]->piesel, people[j]->piesel);
-                    swap(people[i]->Year, people[j]->Year);
-                }
-            }
-        }
+        std::sort(people.begin(), people.end(), [](const auto& a, const auto& b) {
+            return a->piesel < b->piesel;
+            });
         break;
     case 5:
-
-        for (short i = 0; i < people.size(); i++) {
-            for (short j = i + 1; j < people.size(); j++) {
-                if (people[i]->Year.compare(people[j]->Year) > 0) {
-                    swap(people[i]->FullName, people[j]->FullName);
-                    swap(people[i]->sex, people[j]->sex);
-                    swap(people[i]->piesel, people[j]->piesel);
-                    swap(people[i]->Year, people[j]->Year);
-                }
-            }
-        }
+        std::sort(people.begin(), people.end(), [](const auto& a, const auto& b) {
+            return a->Year < b->Year;
+            });
         break;
-
     }
 }
+
 void Uzond::removePerson(int index) {
     if (index < 0 || index >= people.size()) {
         return;

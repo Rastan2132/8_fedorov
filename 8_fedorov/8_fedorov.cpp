@@ -9,7 +9,7 @@ int main()
 
 	vector<string> NAMES = { "Alexander","Maxim","Dmitry","Sergei","Ivan","Anna","Maria","Olga","Elena","Natalia" };
 	vector<string> SURNAMES = { "Ivanov","Petrov","Sidorov","Smirnov","Kuznetsov","Ivanova","Petrova","Sidorova","Smirnova","Kuznetsova" };
-	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
+	vector<string> NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
 	vector<string> arrOfNameKindergarten = { "Krasnoludek", "Sloneczko", "Bajka", "Promyczek" };
 	vector<string> arrOfWork = { "nauczyciel", "lekarz", "informatyk", "sprzedawca", "prawnik" };
 
@@ -21,7 +21,6 @@ int main()
 			Uzond uzond = Uzond::create(size_of_peopl, NAMES_of_Uzond, NAMES, SURNAMES, arrOfNameKindergarten, arrOfWork);
 			program.insert(std::make_pair(i, uzond));
 		}
-
 
  }
 	else
