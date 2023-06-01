@@ -37,45 +37,41 @@ int rand_data(string sex)								/// от 0 до 9 муж. от 10 до 19 жен
 		return rand() % 5 + 5;
 
 }
-
-string rand_data(int max)
-{
-	string rez;
-	if (max == 2)
-	{
-		if ((rand() % 2) == 1)
-		{
+std::string rand_data(int max) {
+	std::string rez;
+	if (max == 2) {
+		if ((rand() % 2) == 1) {
 			rez = "man";
 		}
-		else
-		{
+		else {
 			rez = "women";
 		}
 		return rez;
 	}
-	else if (max == 4)
-	{
+	else if (max == 4) {
 		int year = rand() % (2023 - 1900 + 1) + 1900;
-		return to_string(year);
+		return std::to_string(year);
 	}
-	else if (max == 12)
-	{
+	else if (max == 12) {
 		unsigned int number = 0;
 		for (int i = 0; i < 12; i++) {
 			number = number * 10 + rand() % 10;
 		}
-
-		return to_string(number);
+		return std::to_string(number);
 	}
-	else if (max == 3)
-	{
+	else if (max == 3) {
 		long long number = 0;
 		for (int i = 0; i < 3; i++) {
 			number = number * 10 + rand() % 10;
 		}
-		return to_string(number);
+		return std::to_string(number);
 	}
 	return "error";
+}
+
+// Адаптер функции
+std::string adapted_rand_data(int max) {
+	return rand_data(max);
 }
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork)
 {

@@ -212,15 +212,15 @@ public:
     std::string getNumer() const { return Numer; }
 
     void operator()() const {
-        for (short y = 0; y < get_people_size(); y++) {
-            cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
-            const Users* user = get_user(y);
-            if (user != nullptr) {
-                user->print();
-                std::cout << std::endl;
-            }
+    for (short y = 0; y < get_people_size(); y++) {
+        cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
+        const Users* user = get_user(y);
+        if (user != nullptr) {
+            user->print();
+            std::cout << std::endl;
         }
     }
+}
 
 
     void removePerson(int index);
