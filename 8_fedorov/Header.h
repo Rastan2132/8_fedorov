@@ -211,7 +211,7 @@ public:
     void setNumer(const std::string& Numer_) { Numer = Numer_; }
     std::string getNumer() const { return Numer; }
 
-    void printUsers() const {
+    void operator()() const {
         for (short y = 0; y < get_people_size(); y++) {
             cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
             const Users* user = get_user(y);
@@ -221,6 +221,7 @@ public:
             }
         }
     }
+
 
     void removePerson(int index);
     void sort(short flag);
@@ -246,6 +247,7 @@ void find(std::map<int, Uzond>& program);
 void edit(std::map<int, Uzond>& program, int index_1, int index_2);
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork);
 void show(const std::map<int, Uzond>& program);
+
 COORD getCursorPosition(void);
 void Clear(int x, int y, long cnt = 100);
 bool stredit(char* str, int buffer_size, int x, int y, int cursor = 0, bool clear_after = true);

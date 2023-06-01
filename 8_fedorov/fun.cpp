@@ -281,7 +281,7 @@ void show(const std::map<int, Uzond>& program) {
 		std::cout << MANIP << uzond.Name_property << " " << MANIP << uzond.Name_property << std::endl;
 		std::cout << std::endl;
 
-		uzond.printUsers();
+		uzond();
 
 		std::cout << std::endl << std::endl;
 	}
