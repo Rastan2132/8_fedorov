@@ -212,14 +212,18 @@ public:
     std::string getNumer() const { return Numer; }
 
     void operator()() const {
-    for (short y = 0; y < get_people_size(); y++) {
-        cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
-        const Users* user = get_user(y);
-        if (user != nullptr) {
-            user->print();
-            std::cout << std::endl;
+		std::cout << MANIP << Name<< " " << MANIP << Numer << std::endl;
+		std::cout << std::endl;
+        short y = 0;
+        for (const Users* user : people) {
+            cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
+            if (user != nullptr) {
+                user->print();
+                std::cout << std::endl;
+            }
+            y++;
         }
-    }
+        std::cout << std::endl << std::endl;
 }
 
 

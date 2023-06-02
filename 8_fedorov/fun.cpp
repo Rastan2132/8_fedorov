@@ -68,9 +68,7 @@ std::string rand_data(int max) {
 	}
 	return "error";
 }
-
-// Адаптер функции
-std::string adapted_rand_data(int max) {
+std::string adapted_rand_data(int max, short i) {
 	return rand_data(max);
 }
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork)
@@ -272,14 +270,9 @@ void show(const std::map<int, Uzond>& program) {
 	for (const auto& pair : program) {
 		int index = pair.first;
 		const Uzond& uzond = pair.second;
-
 		std::cout << std::right << std::setw(3) << std::setfill('0') << index + 1 << std::setfill(' ') << " ";
-		std::cout << MANIP << uzond.Name_property << " " << MANIP << uzond.Name_property << std::endl;
-		std::cout << std::endl;
-
 		uzond();
 
-		std::cout << std::endl << std::endl;
 	}
 
 	std::cout << std::endl << std::endl;
