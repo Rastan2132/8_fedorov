@@ -28,6 +28,11 @@ bool isalpha_r(unsigned char a)
 
 	return rez;
 }
+bool isalpha_r_string(const std::string& str) {
+	std::string result;
+	std::transform(str.begin(), str.end(), std::back_inserter(result), std::bind(isalpha_r, std::placeholders::_1));
+	return (result == str);
+}
 
 int rand_data(string sex)								/// от 0 до 9 муж. от 10 до 19 жен
 {

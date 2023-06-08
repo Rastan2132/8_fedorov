@@ -10,21 +10,25 @@ Uzond Uzond::create(short size_of_people, const std::vector<std::string>& arrOfN
         std::string sex = rand_data(_sex);
         std::string name = arrOfNames[rand_data(sex)];
         std::string surname = arrOfSurnames[rand_data(sex)];
-        std::string piesel = rand_data(_piesel);
+        std::string pesel = rand_data(_piesel);
 
         if (is_child) {
             std::string kindergarten = arrOfNameKindergarten[rand() % arrOfNameKindergarten.size()];
-            *std::back_inserter(uand.people) = new Uzond::Children(name, surname, std::to_string(2023 - (rand() % 18)), piesel, sex, kindergarten);
+
+            uand.people.push_back(std::make_unique<Children>(name, surname, std::to_string(2023 - (rand() % 18)), pesel, sex, kindergarten));
         }
         else {
             std::string year = rand_data(_year);
             std::string work = arrOfWork[rand() % arrOfWork.size()];
-            *std::back_inserter(uand.people) = new Uzond::People(name, surname, year, piesel, sex, work, std::to_string(rand() % 20));
+
+            uand.people.push_back(std::make_unique<People>(name, surname, year, pesel, sex, work, std::to_string(rand() % 20)));
         }
     }
 
     return uand;
 }
+
+
 
 
 
@@ -35,16 +39,14 @@ void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, v
     string year = rand_data(_year);
     string piesel = rand_data(_piesel);
     if (flag) {
-
-        string Kindergarten = arrOfNameKindergarten[rand() % arrOfNameKindergarten.size()];
-        people.push_back(new Children(name, surname, to_string(2023 - (rand() % 18)), piesel, sex, Kindergarten));
+        string kindergarten = arrOfNameKindergarten[rand() % arrOfNameKindergarten.size()];
+        people.push_back(std::make_unique<Children>(name, surname, to_string(2023 - (rand() % 18)), piesel, sex, kindergarten));
     }
     else {
         string year = rand_data(_year);
-        string Work = arrOfWork[rand() % arrOfWork.size()];
-        people.push_back(new People(name, surname, year, piesel, sex, Work, to_string(rand() % 20)));
+        string work = arrOfWork[rand() % arrOfWork.size()];
+        people.push_back(std::make_unique<People>(name, surname, year, piesel, sex, work, to_string(rand() % 20)));
     }
-    
 }
 
 void Uzond::sort(short flag)
@@ -99,16 +101,17 @@ void Uzond::removePerson(int index) {
             if (flag == 0) {
                 string k;
                 in >> name >> surname >> year >> pesel >> sex >> k;
-                uand.people.push_back(new Children(name, surname, year, pesel, sex, k));
+                uand.people.push_back(std::make_unique<Children>(name, surname, year, pesel, sex, k));
             }
             else {
                 string Work_property, Work_experience_property;
                 in >> name >> surname >> year >> pesel >> sex >> Work_property >> Work_experience_property;
-                uand.people.push_back(new People(name, surname, year, pesel, sex, Work_property, Work_experience_property));
+                uand.people.push_back(std::make_unique<People>(name, surname, year, pesel, sex, Work_property, Work_experience_property));
             }
         }
     }
     return uand;
+
 }
 
 std::istream& operator>>(std::istream& in, std::map<int, Uzond>& program)

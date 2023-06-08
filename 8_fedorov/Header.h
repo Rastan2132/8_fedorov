@@ -13,6 +13,7 @@
 #include <map>
 #include <algorithm>
 #include <iterator>
+#include <functional>
 
 using namespace std;
 
@@ -172,7 +173,7 @@ class Uzond {
         friend class Uzond;
     };
 
-    std::vector<Users*> people;
+    std::vector<std::unique_ptr<Users>> people;
     std::string Name;
     std::string Numer;
 public:
@@ -183,28 +184,25 @@ public:
     Uzond(const Uzond& other)
         : Name(other.Name), Numer(other.Numer)
     {
-        for (const Users* user : other.people) {
-            if (const People* peopleUser = dynamic_cast<const People*>(user)) {
-                People* clonedPeople = new People(*peopleUser);
-                people.push_back(clonedPeople);
+        for (const std::unique_ptr<Users>& user : other.people) {
+            if (const People* peopleUser = dynamic_cast<const People*>(user.get())) {
+                std::unique_ptr<People> clonedPeople = std::make_unique<People>(*peopleUser);
+                people.push_back(std::move(clonedPeople));
             }
-            else if (const Children* childrenUser = dynamic_cast<const Children*>(user)) {
-                Children* clonedChildren = new Children(*childrenUser);
-                people.push_back(clonedChildren);
+            else if (const Children* childrenUser = dynamic_cast<const Children*>(user.get())) {
+                std::unique_ptr<Children> clonedChildren = std::make_unique<Children>(*childrenUser);
+                people.push_back(std::move(clonedChildren));
             }
         }
     }
     ~Uzond()
     {
-        for (auto person : people) {
-        delete person;
+        people.clear();
     }
-    people.clear();
-    }
+
 
     short get_people_size() const { return people.size(); }
-
-    Users* get_user(short i) const { return people[i]; }
+    Users* get_user(short i) const { return people[i].get(); }
 
     void setName(const std::string& Name_) { Name = Name_; }
     std::string getName() const { return Name; }
@@ -213,11 +211,11 @@ public:
     std::string getNumer() const { return Numer; }
 
     void operator()() const {
-		std::cout << MANIP << Name<< " " << MANIP << Numer << std::endl;
-		std::cout << std::endl;
+        std::cout << MANIP << Name << " " << MANIP << Numer << std::endl;
+        std::cout << std::endl;
         short y = 0;
-        for (const Users* user : people) {
-            cout << "   " << right << setw(3) << setfill('0') << y + 1 << setfill(' ') << " ";
+        for (const auto& user : people) {
+            std::cout << "   " << std::right << std::setw(3) << std::setfill('0') << y + 1 << std::setfill(' ') << " ";
             if (user != nullptr) {
                 user->print();
                 std::cout << std::endl;
@@ -225,7 +223,8 @@ public:
             y++;
         }
         std::cout << std::endl << std::endl;
-}
+    }
+
 
 
     void removePerson(int index);
