@@ -68,9 +68,11 @@ std::string rand_data(int max) {
 	}
 	return "error";
 }
+
 std::string adapted_rand_data(int max, short i) {
 	return rand_data(max);
 }
+
 void add(std::map<int, Uzond>& program, const std::vector<std::string>& arr_name, const std::vector<std::string>& arr_surname, const std::vector<std::string>& arr_of_name_urzant, const std::vector<std::string>& arrOfNameKindergarten, const std::vector<std::string>& arrOfWork)
 {
 	std::cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << std::endl;
@@ -257,6 +259,8 @@ vector<char> stringToArrChar(const string& str) {
 	char_array.push_back('\0');
 	return char_array;
 }
+
+
 void show(const std::map<int, Uzond>& program) {
 	system("cls");
 	std::cout << "----------------------------------------------------------------------------------------------------\n";
@@ -275,8 +279,9 @@ void show(const std::map<int, Uzond>& program) {
 
 	}
 
-	std::cout << std::endl << std::endl;
 }
+
+
 void find(std::map<int, Uzond>& program)
 {
 	if (program.empty())

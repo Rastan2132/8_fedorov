@@ -14,17 +14,18 @@ Uzond Uzond::create(short size_of_people, const std::vector<std::string>& arrOfN
 
         if (is_child) {
             std::string kindergarten = arrOfNameKindergarten[rand() % arrOfNameKindergarten.size()];
-            uand.people.push_back(new Children(name, surname, std::to_string(2023 - (rand() % 18)), piesel, sex, kindergarten));
+            *std::back_inserter(uand.people) = new Uzond::Children(name, surname, std::to_string(2023 - (rand() % 18)), piesel, sex, kindergarten);
         }
         else {
             std::string year = rand_data(_year);
             std::string work = arrOfWork[rand() % arrOfWork.size()];
-            uand.people.push_back(new People(name, surname, year, piesel, sex, work, std::to_string(rand() % 20)));
+            *std::back_inserter(uand.people) = new Uzond::People(name, surname, year, piesel, sex, work, std::to_string(rand() % 20));
         }
     }
 
     return uand;
 }
+
 
 
 void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag) {
